@@ -8,7 +8,18 @@ export const useSortableData = () => useContext(SortableDataContext);
 
 export default function SortableDataProvider({ children }) {
 	const [items, setItems] = useState(sortableData);
-	let sortedItems = [...items];
+	const [sortConfig, setSortConfig] = useState(null);
+
+    const sortedItems = useMemo(() => {
+    	let sortableItems = [...items];
+    	return sortableItems;
+    }, [items, sortConfig])
+
+    const requestSort = (key) => {
+    	let direction = "ascending";
+    	setSortConfig({ key, direction });
+    };
+	
 	//const [sortConfig, setSortConfig] = useState(config);
 /*	
 	const sortedItems = useMemo(() => {
@@ -19,7 +30,7 @@ export default function SortableDataProvider({ children }) {
     // const requestSort = null;
 
     return (
-    	<SortableDataContext.Provider value={{ items }}>
+    	<SortableDataContext.Provider value={{ items: sortedItems, requestSort, sortConfig }}>
     	    { children }
     	</SortableDataContext.Provider>
     );

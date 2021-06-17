@@ -3,7 +3,7 @@ import React from "react";
 import { useSortableData } from "./SortableDataProvider";
 
 export default function SortableTable() {
-	const { items } = useSortableData();
+	const { items, requestSort, sortConfig } = useSortableData();
 
 	return (
 		<table>
