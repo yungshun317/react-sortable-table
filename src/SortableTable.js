@@ -11,13 +11,28 @@ export default function SortableTable() {
 		    <thead>
 		        <tr>
 		            <th>
-		                <button>Name</button>
+		                <button
+		                    type="button"
+		                    onClick={() => requestSort("name")}    
+		                >
+		                    Name
+		                </button>
 		            </th>
 		            <th>
-		                <button>Price</button>
+		                <button
+		                    type="button"
+		                    onClick={() => requestSort("price")}    
+		                >
+                            Price
+                        </button>
 		            </th>
 		            <th>
-		                <button>In Stock</button>
+		                <button
+		                    type="button"
+		                    onClick={() => requestSort("stock")}    
+		                >
+		                    In Stock
+		                </button>
 		            </th>
 		        </tr>
 		    </thead>
