@@ -1,18 +1,26 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useMemo } from "react";
 
-import SortableData from "./products.json";
+import sortableData from "./products.json";
 
 const SortableDataContext = createContext();
 
 export const useSortableData = () => useContext(SortableDataContext);
 
-export default function SortableDataProvider({ 
-	items,
-	config = null
-}) {
-	const [sortConfig, setSortConfig] = useState(config);
-	const sortedItems = useState(sortableData);
-    const requestSort = null;
+export default function SortableDataProvider({ children }) {
+	const [items, setItems] = useState(sortableData);
+	let sortedItems = [...items];
+	//const [sortConfig, setSortConfig] = useState(config);
+/*	
+	const sortedItems = useMemo(() => {
+		let sortableItems = [...items];
+		return sortableItems;
+	}, [items, sortConfig]);
+*/	
+    // const requestSort = null;
 
-    return { items: sortedItems, requestSort, sortConfig };
+    return (
+    	<SortableDataContext.Provider value={{ items }}>
+    	    { children }
+    	</SortableDataContext.Provider>
+    );
 }
