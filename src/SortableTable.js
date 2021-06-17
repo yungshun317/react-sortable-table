@@ -1,6 +1,10 @@
 import React from "react";
 
+import { useSortableData } from "./SortableDataProvider";
+
 export default function SortableTable() {
+	const { items, requestSort, sortConfig } = useSortableData(props.products);
+
 	return (
 		<table>
 		    <caption>Products</caption>
@@ -18,6 +22,15 @@ export default function SortableTable() {
 		        </tr>
 		    </thead>
 		    <tbody>
+		        {
+		        	items.map((item) => (
+		        	    <tr key={item.id}>
+		        	        <td>{item.name}</td>
+		        	        <td>{item.price}</td>
+		        	        <td>{item.stock}</td>
+		        	    </tr>
+		        	))
+		        }
 		    </tbody>
 		</table>
 	);
